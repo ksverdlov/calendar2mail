@@ -2,7 +2,7 @@
 
 Sends a text report about events in Exchange calendar for the day.
 
-Uses the [keyring|https://pypi.org/project/keyring/] python library as password storage (tested only with **macOS Keychain** as backend).
+Uses the [keyring](https://pypi.org/project/keyring/) python library as password storage (tested only with **macOS Keychain** as backend).
 
 ## Report body example
 
