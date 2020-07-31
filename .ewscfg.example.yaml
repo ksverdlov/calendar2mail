@@ -1,0 +1,6 @@
+EWS_EMAIL:  ee@company.com     # Your email
+EWS_EMAIL_TO:  manager@company.com     # SendTo email
+EWS_SERVER: mail.server.com # Your server
+EWS_USER:   username                 # Your user
+EWS_PWDKEY: CALENDAR_TO_MAIL_PWD_KEY     # You need this to retrieve the password from the keyring
+EWS_SUBJECT: Daily report
