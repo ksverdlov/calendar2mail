@@ -55,7 +55,16 @@ duration = timedelta(hours=0)
 list = ""
 for item in items:
     duration += item.end - item.start
-    list += "%s %s %s %s\n" % (item.start.astimezone(tz).strftime("%H:%M"), item.end.astimezone(tz).strftime("%H:%M"), '{0: <5}'.format(item.duration[2:]), item.subject)
+    info = []
+    if item.location is not None:
+        info.append(item.location)
+    if item.required_attendees is not None:
+        for person in item.required_attendees:
+            info.append(str(person.mailbox.name))
+    if item.optional_attendees is not None:
+        for person in item.optional_attendees:
+            info.append(str(person.mailbox.name))
+    list += "%s %s %s %s%s\n" % (item.start.astimezone(tz).strftime("%H:%M"), item.end.astimezone(tz).strftime("%H:%M"), '{0: <5}'.format(item.duration[2:]), item.subject, ' (' + ', '.join(info) + ')' if info else '')
 
 body = "%s report\n\n" % report_date.strftime("%Y-%m-%d")
 body += "Total time: %s\n\n" % duration
