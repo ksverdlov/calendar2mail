@@ -59,11 +59,15 @@ for item in items:
     if item.location is not None:
         info.append(item.location)
     if item.required_attendees is not None:
-        for person in item.required_attendees:
+        for person in item.required_attendees[:5]:
             info.append(str(person.mailbox.name))
+        if len(item.required_attendees) > 5:
+            info.append("…")
     if item.optional_attendees is not None:
-        for person in item.optional_attendees:
+        for person in item.optional_attendees[:2]:
             info.append(str(person.mailbox.name))
+        if len(item.optional_attendees) > 2:
+            info.append("…")
     list += "%s %s %s %s%s\n" % (item.start.astimezone(tz).strftime("%H:%M"), item.end.astimezone(tz).strftime("%H:%M"), '{0: <5}'.format(item.duration[2:]), item.subject, ' (' + ', '.join(info) + ')' if info else '')
 
 body = "%s report\n\n" % report_date.strftime("%Y-%m-%d")
