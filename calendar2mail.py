@@ -47,7 +47,7 @@ else:
     report_date = tz.localize(EWSDateTime(now.year, now.month, now.day))
 
 items = account.calendar.view(
-    start = report_date,
+    start = report_date + timedelta(minutes=1),
     end = report_date + timedelta(hours=24)
 )
 
