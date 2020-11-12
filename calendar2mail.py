@@ -38,13 +38,12 @@ account = Account(
     primary_smtp_address=email, config=config, autodiscover=False, access_type=DELEGATE
 )
 
-tz = EWSTimeZone.timezone('Europe/Moscow')
+tz = EWSTimeZone('Europe/Moscow')
 
 if len(sys.argv) > 1:
-    report_date = tz.localize(EWSDateTime.strptime(sys.argv[1], '%Y-%m-%d'))
+    report_date = EWSDateTime.strptime(sys.argv[1], '%Y-%m-%d').replace(tzinfo=tz)
 else:
-    now = tz.localize(EWSDateTime.today())
-    report_date = tz.localize(EWSDateTime(now.year, now.month, now.day))
+    report_date = EWSDateTime.today().replace(tzinfo=tz)
 
 items = account.calendar.view(
     start = report_date + timedelta(minutes=1),
