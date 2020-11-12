@@ -46,8 +46,8 @@ else:
     report_date = EWSDateTime.today().replace(tzinfo=tz)
 
 items = account.calendar.view(
-    start = report_date + timedelta(minutes=1),
-    end = report_date + timedelta(hours=24)
+    start = report_date + timedelta(hours=6),
+    end = report_date + timedelta(hours=30)
 )
 
 duration = timedelta(hours=0)
